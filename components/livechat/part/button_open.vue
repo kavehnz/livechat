@@ -21,18 +21,17 @@
 
 </template>
 <script setup>
-  import { ref } from 'vue'
   const emit = defineEmits(['toggle-messenger']);
-  function toggleMessenger() {
+  const toggleMessenger = () =>{
     emit('toggle-messenger');
   }
   const isVisible = ref(true);
-  function closePopup() {
+  const closePopup = () =>{
     isVisible.value = false;
   }
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .live-chat-btn {
     @apply cursor-pointer flex flex-wrap items-center bg-black text-white rounded-2xl px-3 pr-5 py-2 hover:bg-purple-950 transition;
   }

@@ -27,7 +27,7 @@
             </div>
         </button>
         <div class="form-group">
-            <span v-if="errors.agent" class="error-label">{{ errors.agent }}</span>
+            <span v-if="error" class="error-label">{{ error }}</span>
             <button
                 @click="startConversation"
                 type="button" class="submit-btn ico"
@@ -39,27 +39,24 @@
     </div>
 </template>
 <script setup>
-    import { useFormStore } from '@/stores/formStore'
     const formStore = useFormStore()
+    const emit = defineEmits(['startConversation'])
     const selectedAgent = ref(null)
-     const handleClick = (agent) => {
+    const error = ref('')
+    const handleClick = (agent) => {
         selectedAgent.value = agent
         formStore.setAgent(selectedAgent.value)
     }
-    const errors = reactive({
-        agent: ''
-    })
-    const emit = defineEmits(['startConversation'])
     const startConversation = () => {
         if(selectedAgent.value){
             emit('startConversation')
         } else {
-            errors.agent = "Please select agent"
+            error.value = "Please select agent"
         }
     }
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .form-container-step-title{
     @apply text-center font-extralight my-4;
   }

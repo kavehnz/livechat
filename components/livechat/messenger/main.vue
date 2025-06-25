@@ -49,11 +49,10 @@
     </div>
 </template>
 <script setup>
-    import { useFormStore } from '@/stores/formStore'
     const formStore = useFormStore()
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   #messenger {
     @apply transition fixed left-10 md:left-auto bottom-10 right-10 bg-white rounded-2xl w-auto md:w-3xl shadow-sm overflow-hidden;
   }

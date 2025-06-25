@@ -45,18 +45,19 @@
         },
     })
     const emit = defineEmits(['close-messenger' , 'show-EditProfile' , 'backButton']);
-    function closeMessenger() {
+    const closeMessenger = () => {
+        
         emit('close-messenger');
     }
-    function showEditProfile() {
+    const showEditProfile = () => {
         emit('show-EditProfile');
     }
-    function backButton() {
+    const backButton = () => {
         emit('backButton');
     }
 </script>
 <style>
-    @import "assets/css/main.css";
+    @reference "assets/css/main.css";
     .form-container-header {
         @apply flex justify-between items-center;
     }

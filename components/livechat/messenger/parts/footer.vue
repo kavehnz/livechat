@@ -32,9 +32,7 @@
     </div>
 </template>
 <script setup>
-import { useFormStore } from '@/stores/formStore'
 const formStore = useFormStore()
-import { ref } from 'vue';
 const fileInput = ref(null);
 const triggerFileInput = () => {
   fileInput.value.click();
@@ -47,7 +45,7 @@ const handleFileChange = (event) => {
 };
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .messenger-footer{
     @apply flex flex-col md:flex-row align-middle items-center p-5 border-t border-gray-100;
   }

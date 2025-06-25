@@ -25,7 +25,6 @@
     </div>
 </template>
 <script setup>
-import { useFormStore } from '@/stores/formStore'
 const formStore = useFormStore()
 const closeMainMessenger = () => {
     formStore.toggleClicked()   
@@ -35,7 +34,7 @@ const completeConversation = () =>  {
 }
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .messenger-header{
     @apply bg-gray-100 flex flex-wrap justify-between border-b border-gray-100 p-5;
   }

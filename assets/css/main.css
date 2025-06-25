@@ -16,13 +16,13 @@ body{
 header , footer{
     background: #DDD;
 }
-.IntroText h1{
+.intro-text h1{
   background: #473678;
   background: linear-gradient(to right, #473678 0%, #736899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.IntroText p{
+.intro-text p{
   background: #505050;
   background: linear-gradient(to right, #505050 0%, #8E8E8E 100%);
   -webkit-background-clip: text;

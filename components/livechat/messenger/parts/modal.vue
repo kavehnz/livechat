@@ -52,9 +52,7 @@
     </div>
 </template>
 <script setup>
-    import { useFormStore } from '@/stores/formStore'
     const formStore = useFormStore()
-    import { ref } from 'vue';
     const isLiked = ref(null);
     const showSubmitBtn = ref(false)
     const rateValue = ref(null)
@@ -73,7 +71,7 @@
     }
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .modal {
     @apply absolute flex items-center justify-center inset-0 z-10 bg-[#0000007a] p-4;
   }

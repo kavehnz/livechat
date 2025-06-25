@@ -5,7 +5,7 @@
     </div>
     <div class="form-group">
         <label class="mb-1" for="subject">Subject:</label>
-        <select v-model="form.subject" id="subject">
+        <select v-model="formSubject" id="subject">
             <option value="" disabled selected class="hidden">Choose a subject</option>
             <option value="subject1">subject 1</option>
             <option value="subject2">subject 2</option>
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         <label class="mb-1" for="subject">Message:</label>
-        <textarea v-model="form.message" name="message" id="message" placeholder="Write your question"></textarea>
+        <textarea v-model="formMessage" name="message" id="message" placeholder="Write your question"></textarea>
         <span v-if="errors.message" class="error-label">{{ errors.message }}</span>
     </div>
     <div>
@@ -24,32 +24,30 @@
 </div>
 </template>
 <script setup>
-    const form = reactive({
-        subject: '',
-        message: ''
-    })
-    const errors = reactive({
-        subject: '',
-        message: ''
-    })
-    function validate() {
+    const emit = defineEmits(['next'])
+    const formSubject = ref('');
+    const formMessage = ref('');
+    const errors = {
+        subject: ref(''),
+        message: ref('')
+    }
+    const validate = () => {
         let isValid = true
-        errors.subject = ''
-        errors.message = ''
+        errors.subject.value = ''
+        errors.message.value = ''
+        
 
-        if (!form.subject) {
-            errors.subject = 'Subject is required'
+        if (!formSubject.value) {
+            errors.subject.value = 'Subject is required'
             isValid = false
         }
-
-        const messageTrimmed = form.message.trim()
+        const messageTrimmed = formMessage.value.trim();
         if (!messageTrimmed) {
-            errors.message = 'Message is required'
+            errors.message.value = 'Message is required'
             isValid = false
         }
         return isValid
     }
-    const emit = defineEmits(['next'])
     const goNext = () => {
         if (validate()) {
             emit('next')
@@ -57,7 +55,7 @@
     }
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .form-group{
     @apply flex flex-col mb-4;
   }

@@ -33,9 +33,7 @@
         <LivechatMessengerMain v-if="openMessenger"/>
     </Transition>
 </template>
-<script setup> 
-    import { ref } from 'vue'
-    import { useFormStore } from '@/stores/formStore'
+<script setup>
     const formStore = useFormStore()
     const editProfile = ref(false)
     const isEditing = ref(false)
@@ -76,7 +74,7 @@
     })
 </script>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .form-container {
     @apply transition fixed bottom-10 right-10 bg-white rounded-md  left-10 md:left-auto md:w-100 w-auto shadow-sm p-4;
   }

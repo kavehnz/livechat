@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-full lg:overflow-y-auto">
-      <div class="IntroText">
+      <div class="intro-text">
           <h1 class="index-title">Build Your Businness With Us</h1>
           <p class="index-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -58,7 +58,7 @@
 </template>
 <style>
   @import "assets/css/main.css";
-  .IntroText {
+  .intro-text {
     @apply flex-1 p-15 md:p-30;
   }
   .index-title{
