@@ -57,7 +57,7 @@
     <slot />
 </template>
 <style>
-  @import "assets/css/main.css";
+  @reference "assets/css/main.css";
   .intro-text {
     @apply flex-1 p-15 md:p-30;
   }

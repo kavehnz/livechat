@@ -33,45 +33,47 @@
         <LivechatMessengerMain v-if="openMessenger"/>
     </Transition>
 </template>
-<script setup>
+<script setup lang="ts">
     const formStore = useFormStore()
-    const editProfile = ref(false)
-    const isEditing = ref(false)
-    const isMessengerVisible = ref(false)
-    const openMessenger = ref(false)
-
-    const closeMessenger = () => {
+    const editProfile = ref<boolean>(false)
+    const isEditing = ref<boolean>(false)
+    const isMessengerVisible = ref<boolean>(false)
+    const openMessenger = ref<boolean>(false)
+    const currentStep = ref<number>(1)
+    const closeMessenger = (): void => {
         isMessengerVisible.value = false
         isEditing.value = false
         currentStep.value = 1
     }
-    const toggleMessenger = () => {
+    const toggleMessenger = (): void => {
         isMessengerVisible.value = !isMessengerVisible.value
     }
-    const showEditProfile = () =>{
+    const showEditProfile = (): void =>{
         isEditing.value = true
         currentStep.value = 0
     }
-    const afterSubmitEditInfo = () =>{
+    const afterSubmitEditInfo = (): void =>{
         isEditing.value = false
         currentStep.value = 3
     }
-    const startConversation = () =>{
+    const startConversation = (): void =>{
         openMessenger.value = true
         isMessengerVisible.value = false
     }
-    const currentStep = ref(1)
-    const nextStep = () => {
+    const nextStep = (): void => {
         currentStep.value++
     }
-    watch([() => formStore.CloseMainMessenger, () => currentStep.value], ([newClickedValue, newStep]) => {
+    watch(
+        [() => formStore.close_mainMessenger, () => currentStep.value],
+        ([newClickedValue, newStep]) => {
         editProfile.value = (newStep === 3)
-        if(newClickedValue){
-            openMessenger.value = false
-            isMessengerVisible.value = true
-            formStore.CloseMainMessenger = false
+            if(newClickedValue){
+                openMessenger.value = false
+                isMessengerVisible.value = true
+                formStore.close_mainMessenger = false
+            }
         }
-    })
+    )
 </script>
 <style>
   @reference "assets/css/main.css";

@@ -20,12 +20,12 @@
   </div>
 
 </template>
-<script setup>
+<script setup lang="ts">
   const emit = defineEmits(['toggle-messenger']);
-  const toggleMessenger = () =>{
+  const toggleMessenger = (): void =>{
     emit('toggle-messenger');
   }
-  const isVisible = ref(true);
+  const isVisible = ref<boolean>(true);
   const closePopup = () =>{
     isVisible.value = false;
   }

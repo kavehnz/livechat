@@ -18,18 +18,18 @@
             <button class="download-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"></path></svg>
             </button>
-            <button v-if="!formStore.chatStatus" @click="completeConversation" class="set-status-btn">
+            <button v-if="!formStore.chat_status" @click="completeConversation" class="set-status-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
             </button>
         </div>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 const formStore = useFormStore()
-const closeMainMessenger = () => {
+const closeMainMessenger = (): void => {
     formStore.toggleClicked()   
 }
-const completeConversation = () =>  {
+const completeConversation = (): void =>  {
     formStore.setChatStatus('rating');
 }
 </script>

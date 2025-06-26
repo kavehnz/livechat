@@ -46,7 +46,6 @@
     })
     const emit = defineEmits(['close-messenger' , 'show-EditProfile' , 'backButton']);
     const closeMessenger = () => {
-        
         emit('close-messenger');
     }
     const showEditProfile = () => {

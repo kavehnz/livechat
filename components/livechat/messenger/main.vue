@@ -44,7 +44,7 @@
         </div>
         <LivechatMessengerPartsFooter />
         <Transition name="fade">
-            <LivechatMessengerPartsModal v-if="formStore.chatStatus === 'rating'"/>
+            <LivechatMessengerPartsModal v-if="formStore.chat_status === 'rating'"/>
         </Transition>
     </div>
 </template>

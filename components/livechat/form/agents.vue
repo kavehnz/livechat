@@ -38,14 +38,15 @@
         </div>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
     const formStore = useFormStore()
     const emit = defineEmits(['startConversation'])
-    const selectedAgent = ref(null)
-    const error = ref('')
-    const handleClick = (agent) => {
+    const selectedAgent = ref<string | null>(null)
+    const error = ref<string>('')
+    const handleClick = (agent: string) => {
         selectedAgent.value = agent
         formStore.setAgent(selectedAgent.value)
+        error.value = ''
     }
     const startConversation = () => {
         if(selectedAgent.value){

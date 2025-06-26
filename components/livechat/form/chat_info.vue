@@ -3,56 +3,59 @@
     <div class="form-container-step-title">
         Please enter your Message
     </div>
-    <div class="form-group">
-        <label class="mb-1" for="subject">Subject:</label>
-        <select v-model="formSubject" id="subject">
-            <option value="" disabled selected class="hidden">Choose a subject</option>
-            <option value="subject1">subject 1</option>
-            <option value="subject2">subject 2</option>
-            <option value="subject3">subject 3</option>
-        </select>
-        <span v-if="errors.subject" class="error-label">{{ errors.subject }}</span>
-    </div>
-    <div class="form-group">
-        <label class="mb-1" for="subject">Message:</label>
-        <textarea v-model="formMessage" name="message" id="message" placeholder="Write your question"></textarea>
-        <span v-if="errors.message" class="error-label">{{ errors.message }}</span>
-    </div>
+    <InputSelectInput
+        ref="subjectInput"
+        id="subject"
+        label="Subject"
+        v-model="formSubject"
+        :options="[
+            { value: 'subject1', text: 'Subject 1' },
+            { value: 'subject2', text: 'Subject 2' },
+            { value: 'subject3', text: 'Subject 3' }
+        ]"
+        :required="true"
+        placeholder="Choose a subject"
+        @validateInput="handleValidation('subject', $event)"
+    />
+    <InputTextAreaInput
+        ref="messageInput"
+        id="message"
+        label="Message"
+        placeholder="Write your question"
+        v-model="formMessage"
+        :required="true"
+        @validateInput="handleValidation('message', $event)"
+    />
     <div>
         <button @click="goNext" type="button" class="submit-btn">Send</button>
     </div>
 </div>
 </template>
-<script setup>
-    const emit = defineEmits(['next'])
-    const formSubject = ref('');
-    const formMessage = ref('');
-    const errors = {
-        subject: ref(''),
-        message: ref('')
-    }
-    const validate = () => {
-        let isValid = true
-        errors.subject.value = ''
-        errors.message.value = ''
-        
-
-        if (!formSubject.value) {
-            errors.subject.value = 'Subject is required'
-            isValid = false
-        }
-        const messageTrimmed = formMessage.value.trim();
-        if (!messageTrimmed) {
-            errors.message.value = 'Message is required'
-            isValid = false
-        }
-        return isValid
-    }
-    const goNext = () => {
-        if (validate()) {
-            emit('next')
-        }
-    }
+<script setup lang="ts">
+  const emit = defineEmits(['next'])
+  const formSubject = ref<string>('')
+  const formMessage = ref<string>('')
+  const subjectInput = ref<{ validate: () => boolean } | null>(null);
+  const messageInput = ref<{ validate: () => boolean } | null>(null);
+  const validationStatus = ref({
+    subject: false,
+    message: false
+  });
+  interface ValidationStatus {
+    subject: false,
+    message: false
+  }
+  const handleValidation = (field: keyof ValidationStatus, isValid: boolean) => {
+    validationStatus.value[field] = isValid;
+  };
+  const goNext = () => {
+      const isMessageValid = messageInput.value?.validate() ?? false;
+      const isSubjectValid = subjectInput.value?.validate() ?? false;
+      if (!isMessageValid || !isSubjectValid) {
+          return;
+      }
+      emit('next')
+  }
 </script>
 <style>
   @reference "assets/css/main.css";
